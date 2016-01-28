@@ -14,6 +14,7 @@
             font-family: sans-serif;
             color:#006bb3;
         }
+        /* h1 and h2 css control the size of the font on the margin*/
         h1{
             font-size: 1.6em;
             margin-left: 25px;
@@ -38,6 +39,7 @@
         img{
             margin-left: 25px;
         }
+        /*this adds the "box", controls size color and margin, the circles are a class and are controled together*/
         #box{
             width: 200px;
             height: 200px;
@@ -58,7 +60,7 @@
             display: inline-block;
             margin: 0 25px;
         }
-        /* CSS style rules go here! */
+        
         
     </style>
 </head>
@@ -70,13 +72,16 @@
     <h2>A tactile map of the world for the non-seeing eye. </h2>
     <p>What does it say about our relationship to technology when we have replaced the all seeing God’s eye-view with a low earth orbit satellite run by a private corporation.</p>
     <img src="images/world2.png" alt="world map">
+    
+    <!-- I replaced the wikipeidia link with some fat back, the <a></a> wraps the text making a link out of the whole paragraph-->.
+    
     <p><a href="https://baconipsum.com/">Bacon Ipsum<a/> Bacon ipsum dolor amet leberkas ground round shank drumstick chuck biltong. Flank shank bresaola shoulder ground round ribeye biltong capicola porchetta ball tip tongue. Chicken sirloin drumstick filet mignon tail bresaola tri-tip pork swine boudin picanha bacon biltong chuck rump. Ribeye pig turkey venison pork loin chicken jowl. Venison chuck chicken, ribeye swine strip steak ball tip. Bacon cow andouille sirloin, shankle tenderloin filet mignon ham hock.</p>
     <ul>
         <li><a href="http://leafletjs.com/">Leaflets<a/></li>
         <li><a href="https://www.mapbox.com/">Map Box<a/></li>
         <li><a href="https://cartodb.com/">Cartodb</a></li>
         <li><a href="http://d3js.org/">d3js</a></li>
-    </ul>
+    </ul> <!-- the id is one time use container, class is a reusable container, in this example the box is unique while the circle is triple-->.
     <div id="box"></div>
     <div class="circle"></div>
     <div class="circle"></div>
@@ -92,6 +97,7 @@
         for(var i=0; i <= elements.length-1;i++){
             elements[i].style['border-radius'] = '20%';
         }
+        // this adds an interactive feature changing id box when it is clicked opposed too when the web browser opens it.
         box.addEventListener('click', function(){
             this.style.width= '400px';
             });
