@@ -3,11 +3,11 @@
 
 <head>
     <meta charset=utf-8 />
-    <title>MAP672 Module 2 Template</title>
+    <title>MAP672 Module 2: The Cartographic Gaze</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 
     <style>
-        body{
+        body {
             margin: 0;
             padding: 0;
             background: #ebebe0;
@@ -15,28 +15,28 @@
             color:#006bb3;
         }
         /* h1 and h2 css control the size of the font and the margin*/
-        h1{
+        h1 {
             font-size: 1.6em;
             margin-left: 25px;
         }
-        h2{
+        h2 {
             font-size: 1.4em;
             margin-left: 25px
         }
-        p{
+        p {
             font-size: 1em;
             margin: 15px 25px;
             max-width: 800px;
         }
-        a{
+        a {
             color:  #006bb3;
             font-weight: bold;
             text-decoration: none;
         }
-        a:hover{
+        a:hover {
             text-decoration: underline;
         }
-        img{
+        img {
             margin-left: 25px;
         }
         /*this adds the "box", controls size color and margin, the circles are a class and are controled together*/
@@ -70,15 +70,15 @@
     
     <h1> A textural world</h1>
     <h2>A tactile map of the world for the non-seeing eye. </h2>
-    <p>What does it say about our relationship to technology when we have replaced the all seeing God’s eye-view with a low earth orbit satellite run by a private corporation.</p>
+    <p>What does it say about our relationship to technology when we have replaced the all seeing God’s eye-view with a low earth orbit satellite run by a private corporation?</p>
     <img src="images/world2.png" alt="world map">
     
     <!-- I replaced the wikipeidia link with some fat back, the <a></a> wraps the text making a link out of the whole paragraph-->.
     
-    <p><a href="https://baconipsum.com/">Bacon Ipsum<a/> Bacon ipsum dolor amet leberkas ground round shank drumstick chuck biltong. Flank shank bresaola shoulder ground round ribeye biltong capicola porchetta ball tip tongue. Chicken sirloin drumstick filet mignon tail bresaola tri-tip pork swine boudin picanha bacon biltong chuck rump. Ribeye pig turkey venison pork loin chicken jowl. Venison chuck chicken, ribeye swine strip steak ball tip. Bacon cow andouille sirloin, shankle tenderloin filet mignon ham hock.</p>
+    <p><a href="https://baconipsum.com/">Bacon Ipsum</a> Bacon ipsum dolor amet leberkas ground round shank drumstick chuck biltong. Flank shank bresaola shoulder ground round ribeye biltong capicola porchetta ball tip tongue. Chicken sirloin drumstick filet mignon tail bresaola tri-tip pork swine boudin picanha bacon biltong chuck rump. Ribeye pig turkey venison pork loin chicken jowl. Venison chuck chicken, ribeye swine strip steak ball tip. Bacon cow andouille sirloin, shankle tenderloin filet mignon ham hock.</p>
     <ul>
-        <li><a href="http://leafletjs.com/">Leaflets<a/></li>
-        <li><a href="https://www.mapbox.com/">Map Box<a/></li>
+        <li><a href="http://leafletjs.com/">Leaflets</a></li>
+        <li><a href="https://www.mapbox.com/">Map Box</a></li>
         <li><a href="https://cartodb.com/">Cartodb</a></li>
         <li><a href="http://d3js.org/">d3js</a></li>
     </ul> <!-- the id is one time use container, class is a reusable container, in this example the box is unique while the circle is triple-->.
@@ -101,11 +101,13 @@
         box.addEventListener('click', function(){
             this.style.width= '400px';
             });
+        
         var newListItem = document.createElement('li');
         newListItem.innerHTML = "list item 4";
         document.querySelector('ul').appendChild(newListItem);
+        
         console.log("hello map");
-        // JavaScript code goes here  
+       
         
     </script>
     
