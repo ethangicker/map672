@@ -29,10 +29,53 @@
     }
     console.log("after the loop");
     
-    for (var number = 0; number < 5; number = number + 1) {
-        console.log(number;)
+    for (var number = 0; number < 5; number = number + 1){
+        console.log(number);
+    }
+    
+    var cities = ["frankfort", "lousiville", "lexington"];
+    for (var i = 0; i < cities.length; i++) {
+        console.log(i);
+        console.log(cities[i]);
+    }
+    
+    for ( var i = 0; i < 5; i++) {
+        console.log('outer loop: ' + i);
+        for (var j = 0; j < 5; j++) {
+            console.log('inner loop:'+ j);
+        }
+    }
+    
+    var sum = 0;
+    for (var i = 0; i <5; i++) {
+        for (var j = 0; j < 5; j++) {
+            sum+= j;
+        }
+        sum += i;
+    }
+    console.log(sum);
+    
+    var cities = ["frankfort", "lousiville", "lexington"];
+    var i = 0;
+    while(i < cities.length){
+        console.log(i);
+        console.log(cities[i]);
+        i++
     }
 
+    var temp = 32;
+    if(temp === 32) {
+        console.log('the temperature is freezing');
+    }
+    
+    var temp = 33;
+    if(temp === 32) {
+        console.log('the temperature is freezing');
+    } else {
+        console.log('the temperature is NOT 32, but still mey be freezing');
+    }
+    
+   
 </script>
     
 </body>
