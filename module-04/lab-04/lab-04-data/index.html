@@ -83,16 +83,16 @@
         var cities = ["Flagstaff", "Las Vegas", "St. George"];
         
         var cityCoords = [
-            [35.1992, -111.6311], [36.1215, -115.1739,], [37.0953, -113.5781]
-            ];
-        
-        var cityPop = [
-            [65870], [583756], [78505]
+            [35.1992, -111.6311], 
+            [36.1215, -115.1739,], 
+            [37.0953, -113.5781]
         ];
         
-        var cityCapital = [
-            [false], [false], [false]
-        ];
+        // each value doesn't need to be in its own array
+        var cityPop = [65870, 583756, 78505];  
+        
+        // same here
+        var cityCapital = [false, false, false];
         
 
         for( i = 0; i < cities.length; i++  ) {
@@ -100,7 +100,7 @@
             var popup = "<b>"+cities[i]+"</b><br>"
                             +"<b>population</b>: "+cityPop[i];
 
-            if(cityCapital == true) {
+            if(cityCapital[i] == true) {
                
                 popup += "<br>Is the capital city."; 
                 
