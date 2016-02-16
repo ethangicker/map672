@@ -84,35 +84,37 @@
     // begin writing/editing Lab 05 code here
 
     var lexArea = Number(prompt("Enter data", "Enter the area of Lexington in square miles"));
-    // create a second variable to collect a second city's area here
-    // create a third variable to collect a third city's area here
+    var louArea = Number(prompt("Enter data", "Enter the area of Louisville in square miles"));
+    var nasArea = Number(prompt("Enter data", "Enter the area of Nashville in square miles"));
+    
+    prepareData(lexArea,louArea,nasArea); // modify this function call to pass all three variables
 
-    prepareData(lexArea); // modify this function call to pass all three variables
+    function prepareData(lexArea,louArea,nasArea) { /* modify function to include 2 more parameters */
 
-    function prepareData(lexArea) { /* modify function to include 2 more parameters */
-
-        var cities = ["Lexington"]; /* add 2nd and 3rd city names */
+        var cities = ["Lexington", "Louisville", "Nashville"]; /* add 2nd and 3rd city names */
         var cityCoords = [
             [38.0297, -84.4947] 
-            /* include 2nd city lat/lon here */
-            /* include 3rd city lat/lon here */
+            [38.2500, -85.7667]
+            [36.1667, -86.7833]
 
         ];
-        var cityPops = [308428]; /* include 2nd and 3rd city pops here */
+        var cityPops = [308428, 760026, 659042]; /* include 2nd and 3rd city pops here */
 
-        var cityAreas = [lexArea]; /* include 2nd and 3rd city areas */
+        var cityAreas = [lexArea, louArea, nasArea]; /* include 2nd and 3rd city areas */
+        
+        mapCities(cities, cityCoords, cityPops, cityAreas);
 
        // call the mapCities function, passing the 4 arrays created above as arguments
 
     }
 
-    function mapCities(cities, cityCoords) { /* include 2 more parameters here */
+    function mapCities(cities, cityCoords, citypops, cityAreas) { /* include 2 more parameters here */
 
         var units = prompt('Units for calculating density', 'Enter "miles" or "km"');
 
         for(var i = 0; i < cities.length; i++) {
 
-            /*var density =  call a function named calcPopDensity here, passing
+            var density =  call a function named calcPopDensity here, passing
                              the city population, area, and units as arguments, and assign
                              return value to the "density" variable */
 
