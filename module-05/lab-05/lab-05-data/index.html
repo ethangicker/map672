@@ -66,8 +66,6 @@
     <footer>
         <p>Map authored by Ethan Gicker for NMP Map672</p>
         <p>Population data from 2010 U.S. Census.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis urna magna, maximus nec laoreet sit amet, dictum ultricies nibh. Ut id auctor lacus. Nam a dolor et justo luctus luctus. Duis a elit eget risus dictum vehicula id eu elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed sed enim nisl. Vestibulum commodo imperdiet lacus, sed facilisis erat placerat sit amet. Nulla consequat malesuada neque eget aliquet. Integer non convallis nisl, gravida ultrices ex. Fusce nec vestibulum elit. Sed elementum lectus ipsum, vulputate elementum ex laoreet a. Aenean eu ex varius, varius felis vitae, efficitur nulla. Quisque pretium laoreet ante, in sodales dui vehicula at. Mauris eu sem sapien.
-        </p>
     </footer>
 
     <script>
@@ -122,13 +120,8 @@
 
                 density = calcPopDensity(cityPops[i], cityAreas[i], units);
 
-                /*call a function named calcPopDensity here, passing
-                             the city population, area, and units as arguments, and assign
-                             return value to the "density" variable */
-
-
                 var popup = "<b>" + cities[i] + "</b><br>" +
-                    "<b>Density</b>: " + density.toLocaleString() + " people per sq " + units;
+                    "<b>Density</b>: " + Math.round(density) + " people per sq " + units;
 
                 L.marker(cityCoords[i]).addTo(map)
                     .bindPopup(popup);
