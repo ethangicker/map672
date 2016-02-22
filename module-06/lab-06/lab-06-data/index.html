@@ -99,7 +99,7 @@
             {
                 name: "Rock Point",
                 properties: {
-                    coordinates: [37.7194, -109.6250],
+                    coordinates: [36.7194, -109.6250],
                     population: 642,
                     state: "AZ"
 
@@ -119,9 +119,21 @@
         ];
         
         for (var i = 0; i < cities.length; i++) {
+            
             var props = cities[i].properties;
-            console.log(props);
+            
+            var popup = "I am a tepmorary string statement";
+            console.log(props.coordinates);
+        
+       L.marker(props.coordinates).addTo(map)
+        .bindPopup(popup);
+            
+            
+        
         }
+    
+        
+       
         
         
 
