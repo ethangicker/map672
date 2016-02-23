@@ -51,8 +51,16 @@
             color: #001323;
         }
         
-        .kentucky-blue {
-            color: #165bb6;
+        .Utah-blue {
+            color: #088da5;
+        }
+        
+        .Arizona-red {
+            color: #9e3030;
+        }
+        
+        .NewMexico-yellow {
+            color: #f0d220;
         }
 
     </style>
@@ -91,7 +99,7 @@
                 name: "Bluff",
                 properties: {
                     coordinates: [37.2836, -109.5528],
-                    population: 320,
+                    pop: 320,
                     state: "UT"
                 }
             }, 
@@ -100,7 +108,7 @@
                 name: "Rock Point",
                 properties: {
                     coordinates: [36.7194, -109.6250],
-                    population: 642,
+                    pop: 642,
                     state: "AZ"
 
                 }
@@ -110,7 +118,7 @@
                 name: "Shiprock",
                 properties: {
                     coordinates: [36.7928, -108.6872],
-                    population: 8156,
+                    pop: 8156,
                     state: "NM"
                 }
 
@@ -122,15 +130,39 @@
             
             var props = cities[i].properties;
             
-            var popup = "I am a tepmorary string statement";
+            var popup = buildPopup;
             console.log(props.coordinates);
         
        L.marker(props.coordinates).addTo(map)
         .bindPopup(popup);
             
+             buildPopup("name", "pop", "state");
+                
+            }; 
+        
+        function buildPopup(name, pop, state){
+            if (state == "UT") {
+                
+                var colorClass = "Utah-blue";
+             
+            } else if (state == "AZ"){
+                
+                var colorClass = "Arizona-red";
+                } 
+            else {
+                
+                var colorClass = "NewMexico-Yellow";
+            }
+            
+            return "<div class='"+colorClass+"'><b>"+name+"</b><br>"+
+                    "<b>Population</b>: "+pop.toLocaleString()+"<div>";
+        };
+    
+            
+            
             
         
-        }
+        
     
         
        
