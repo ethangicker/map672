@@ -136,12 +136,13 @@
             L.marker(props.coordinates).addTo(map)
                 .bindPopup(popup);
 
-            buildPopup("name", "pop", "state");
-
+            buildPopup(cities.name, props.pop, props.state);
+            //pass city name population number and state
+            
         };
 
         function buildPopup(name, pop, state) {
-
+//accept 3 parameters 
             if (state == "UT") {
 
                 var colorClass = "Utah-blue";
@@ -154,10 +155,10 @@
                 var colorClass = "NewMexico-Yellow";
             }
 
-            return "<div class='" + colorClass + "'><b>" + name + "</b><br>" +
-                "<b>Population</b>: " + pop.toLocaleString() + "<div>";
+            return ("<div class='" + colorClass + "'><b>" + name + "</b><br>" +
+                "<b>Population</b>: " + pop.toLocaleString() + "<div>");
 
-        };
+        }; 
 
     </script>
 
