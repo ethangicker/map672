@@ -130,19 +130,16 @@
 
             var props = cities[i].properties;
 
-            var popup = buildPopup;
+            var popup = buildPopup(cities[i].name, props.pop, props.state);
             //console.log(props.coordinates);
 
             L.marker(props.coordinates).addTo(map)
                 .bindPopup(popup);
-
-            buildPopup(cities.name, props.pop, props.state);
-            //pass city name population number and state
             
         };
 
         function buildPopup(name, pop, state) {
-//accept 3 parameters 
+            //accept 3 parameters 
             if (state == "UT") {
 
                 var colorClass = "Utah-blue";
@@ -151,8 +148,7 @@
 
                 var colorClass = "Arizona-red";
             } else {
-
-                var colorClass = "NewMexico-Yellow";
+                var colorClass = "NewMexico-yellow";
             }
 
             return ("<div class='" + colorClass + "'><b>" + name + "</b><br>" +
