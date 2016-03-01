@@ -19,31 +19,38 @@
             font-family: Lato, sans-serif;
             color: #0D0000;
         }
+        
         header {
             padding: 6px 10%;
         }
+        
         h1 {
             display: inline-block;
             margin-right: 20px;
             color: #001323;
         }
+        
         h2 {
             display: inline-block;
             color: #001323;
         }
+        
         #map {
             width: 80%;
             height: 540px;
             margin: 10px auto;
         }
+        
         footer {
             padding: 6px 10%;
             width: 80%;
         }
+        
         p {
             font-size: 1em;
             color: #001323;
         }
+
     </style>
 </head>
 
@@ -63,11 +70,31 @@
     </footer>
 
     <script>
+        var map = L.map('map', {
+            center: [36.7194, -109.6250],
+            zoom: 10,
+            minZoom: 13,
+            dragging: true
+        });
 
-      // build your Leaflet map here!
-                  
-    </script>
+            var tiles =  L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.{ext}', {
+        
+                attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a   href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     
+    subdomains: 'abcd',
+	minZoom: 0,
+	maxZoom: 20,
+	ext: 'png'
+});
+        
+        tiles.addTo(map);
+        
+        L.marker([36.7194, -109.6250]).addTo(map);
+        
+        
+
+    </script>
+
 </body>
 
 </html>
