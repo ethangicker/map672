@@ -70,28 +70,88 @@
     </footer>
 
     <script>
-        var map = L.map('map', {
-            center: [36.7194, -109.6250],
-            zoom: 10,
-            minZoom: 13,
-            dragging: true
+        //establishes the map using leaflet method 
+        var map = L.map('map');
+        
+        //centers the map and sets the zoom level
+        map.setView([40.7718, -111.9124], 14);
+        
+        //Brings in outside tile sets 
+        var tiles = L.tileLayer('http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         });
-
-            var tiles =  L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.{ext}', {
+        //Adds the tiles to our map layer
+        map.addLayer(tiles);
         
-                attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a   href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-    
-    subdomains: 'abcd',
-	minZoom: 0,
-	maxZoom: 20,
-	ext: 'png'
-});
+        //creates a layer group for our two circles
+        var iguanaRestaurants = L.layerGroup();
         
-        tiles.addTo(map);
+        //creates variable for the circle color and fill 
+        var redIguanaOptions = {
+            color: 'red',//outer band
+            fillColor: 'red'// inner color
+        };
         
-        L.marker([36.7194, -109.6250]).addTo(map);
+        //creates variable for the circle color and fill
+        var blueIguanaOptions = {
+            color: '#03f',
+            fillColor: '#03f'
+        };
         
+        //using svg draws a 400m circle about the resturant and brings dowm the color options from above
+        var redIguana = L.circle([40.7718, -111.9124], 400, redIguanaOptions);
         
+        //establishes color as red
+        redIguana.color = 'red';
+        
+        // adds resturants circle to the group layer
+        redIguana.addTo(iguanaRestaurants);
+        
+        //using svg draws a 400m circle about the resturant and brings dowm the color options from above
+        var blueIguana = L.circle([40.7657, -111.8930], 300, blueIguanaOptions);
+        
+        //establishes color as blue
+        blueIguana.color = 'blue';
+        
+        //adds resturants circle to the group layer
+        blueIguana.addTo(iguanaRestaurants);
+        
+        //adds the group layer of cirlces to the map layer
+        iguanaRestaurants.addTo(map);
+        
+        //references the .eachlayer method
+        iguanaRestaurants.eachLayer(function(layer) {
+            
+            // triggers an event when we mouseover our circle 
+            layer.on('mouseover', function(e) {
+                
+                // tells us that the event will reset the style of the circle
+                e.target.setStyle({
+                    
+                    // sets the color to yellow
+                    color: 'yellow',
+                    fillColor: 'yellow'
+                });
+            });
+            
+            //triggers an event when we move our mouse off the circle returning our circle to original
+            layer.on('mouseout', function(e) {
+                
+                //uses logic to set the color of cirlce based on the colors called at the top of the script
+                if (e.target.color == 'red') {
+                    
+                    //this will set the style of our circle if it is red
+                    e.target.setStyle(redIguanaOptions);
+                    
+                    //if its blue the event will trigger the blue options
+                } else if (e.target.color == 'blue') {
+                    
+                    //sets the style of our circle based on the blue options
+                    e.target.setStyle(blueIguanaOptions);
+                }
+            });
+        });
 
     </script>
 
