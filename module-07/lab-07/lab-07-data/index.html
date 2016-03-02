@@ -66,17 +66,40 @@
     </footer>
 
     <script>
-
-    var map = L.map('map', {
+        
+        var map = L.map('map', {
         center: [40,-94],
-        zoom: 4
+        zoom: 4,
+        minZoom: 4,
+        maxZoom: 12
     });
-                
+        
+        
+    var tiles = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Physical_Map/MapServer/tile/{z}/{y}/{x}', {
+	attribution: 'Tiles &copy; Esri &mdash; Source: US National Park Service',
+	maxZoom: 8
+    });
+    
+         map.addLayer(tiles);
+        
     var redIguana = L.latLng(40.7718,-111.9124);
         
     map.on('click', function(e){
-        console.log(e.latlng);   
+        
+        //console.log(e.latlng);
+        var newPoint = (e.latlng);
+        
+        map.setView(newPoint, 6);
+        
+        var distance = redIguana.distanceTo(newPoint);
+        console.log(distance/1609.34);
+        
+        
+       
+        
     });
+        L.marker(redIguana).addTo(map)
+        
                   
     </script>
     
