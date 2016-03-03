@@ -92,7 +92,12 @@
         map.setView(newPoint, 6);
         
         var distance = redIguana.distanceTo(newPoint);
-        console.log(distance/1609.34 + " miles");
+        
+        var distanceMiles = distance/1609.34;
+        
+        var distRound = Math.round(distanceMiles);
+        
+        console.log(distanceMiles + " miles");
         
         var southWest = map.getBounds().getSouthWest()
         //console.log(southWest);
@@ -100,11 +105,29 @@
         var swDistance = redIguana.distanceTo(southWest);
         console.log(swDistance/1609.34 + " miles");
         
+        var marker = L.marker(redIguana).addTo(map);
         
         
+        var popup = L.popup()
+    .setLatLng(redIguana)
+    .setContent(distRound.toString()+ " Miles to tacos")
+    .openOn(map);
         
-        
+       /* var popup = L.popup();
+
+        function onMapClick(e) {
+        popup
+        .setLatLng(e.latlng)
+        .setContent(distRound + " Miles to tacos ")
+        .openOn(map);
+}
+
+        map.on('click', onMapClick);
+*/
+
     });
+        
+       
     
     
     </script>
