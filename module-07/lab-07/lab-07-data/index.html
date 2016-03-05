@@ -35,6 +35,7 @@
             width: 80%;
             height: 540px;
             margin: 10px auto;
+            cursor: pointer;
         }
         footer {
             padding: 6px 10%;
@@ -61,8 +62,6 @@
     <footer>
         <p>Map authored by Ethan Gicker for NMP 672</p>
         <p>Additional information about the data and map goes here.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis urna magna, maximus nec laoreet sit amet, dictum ultricies nibh. Ut id auctor lacus. Nam a dolor et justo luctus luctus. Duis a elit eget risus dictum vehicula id eu elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed sed enim nisl. Vestibulum commodo imperdiet lacus, sed facilisis erat placerat sit amet. Nulla consequat malesuada neque eget aliquet. Integer non convallis nisl, gravida ultrices ex. Fusce nec vestibulum elit. Sed elementum lectus ipsum, vulputate elementum ex laoreet a. Aenean eu ex varius, varius felis vitae, efficitur nulla. Quisque pretium laoreet ante, in sodales dui vehicula at. Mauris eu sem sapien.
-        </p>
     </footer>
 
     <script>
@@ -80,9 +79,14 @@
 	maxZoom: 8
     });
     
-         map.addLayer(tiles);
+    map.addLayer(tiles);
         
     var redIguana = L.latLng(40.7718,-111.9124);
+    
+    // create a marker once for the iguana
+    // and bind an empty popup to it
+    var marker = L.marker(redIguana).addTo(map)
+                    .bindPopup(L.popup());
         
     map.on('click', function(e){
         
@@ -105,13 +109,15 @@
         var swDistance = redIguana.distanceTo(southWest);
         console.log(swDistance/1609.34 + " miles");
         
-        var marker = L.marker(redIguana).addTo(map);
+        // get the popup from the marker
+        // and update the content
+        marker.getPopup()
+            .setContent(distRound.toString()+ " Miles to tacos");
+      
+        // open the popup on the click
+        marker.openPopup();
         
-        
-        var popup = L.popup()
-    .setLatLng(redIguana)
-    .setContent(distRound.toString()+ " Miles to tacos")
-    .openOn(map);
+   
         
        /* var popup = L.popup();
 
