@@ -56,108 +56,53 @@
 
 <body>
     <header>
-        <h1>Map Title</h1>
-        <h2>Map Subtitle</h2>
+        <h1>Nuclear Power</h1>
     </header>
 
     <div id='map'></div>
 
     <footer>
-        <p>Map authored by YOUR NAME</p>
-        <p>Additional information about the data and map goes here.</p>
+        <p>Map authored by Ethan Gicker</p>
+        <p>Nuclear power plants producing 1000 megawatt hours or greater.</p>
     </footer>
-
+    
+    <script src="power-plants.js"`></script>
+    
     <script>
         // build your Leaflet map here!
+        console.log(plants);
 
         var map = L.map('map', {
-            center: [58.73, 25.67], // centered in Estonia
-            zoom: 7
+    center: [36,-94],
+    zoom: 4,
         });
 
-        var tiles = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a   href="http://cartodb.com/attributions">CartoDB</a>',
+                var tiles = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
             subdomains: 'abcd',
             maxZoom: 19
-        });
+        });  
         tiles.addTo(map);
-
-        var places = {
-            "type": "FeatureCollection",
-            "features": [{
-                "type": "Feature",
-                "properties": {
-                    "marker-color": "#23777e",
-                    "marker-size": "medium",
-                    "marker-symbol": "cross",
-                    "name": "Tallinn",
-                    "size": 159
-                },
-                "geometry": {
-                    "type": "Point",
-                    "coordinates": [
-                        24.697265625,
-                        59.44228245633653
-                    ]
-                }
-            }, {
-                "type": "Feature",
-                "properties": {
-                    "marker-color": "#7e7e7e",
-                    "marker-size": "medium",
-                    "marker-symbol": "",
-                    "Name": "Tartu",
-                    "size": 39
-                },
-                "geometry": {
-                    "type": "Point",
-                    "coordinates": [
-                        26.7242431640625,
-                        58.393076007580135
-                    ]
-                }
-            }, {
-                "type": "Feature",
-                "properties": {
-                    "marker-color": "#7e7e7e",
-                    "marker-size": "medium",
-                    "marker-symbol": "",
-                    "name": "Parnu",
-                    "size": 32
-                },
-                "geometry": {
-                    "type": "Point",
-                    "coordinates": [
-                        24.488525390625,
-                        58.381558503186966
-                    ]
-                }
-            }, {
-                "type": "Feature",
-                "properties": {
-                    "marker-color": "#7e7e7e",
-                    "marker-size": "medium",
-                    "marker-symbol": "",
-                    "name": "Haapsalu",
-                    "size": 11
-                },
-                "geometry": {
-                    "type": "Point",
-                    "coordinates": [
-                        23.5821533203125,
-                        58.955674359706016
-                    ]
-                }
-            }]
-        }
         
-        var placesLeaflet = L.geoJson(places, {
-
-            pointToLayer: function(feature, latlng) {
-                console.log(feature);
-                return L.circle(latlng, feature.properties.size * 100)
+        
+        L.geoJson(plants, {
+    pointToLayer: function(feature,latlng) {
+            return L.circleMarker(latlng, {
+                color: '#ffdb00',
+                weight: 1,
+                fillColor: '#49ff00',
+                fillOpacity: .9,
+                radius: 5
+            });   
+    }, 
+            filter: function(feature, layer) {
+                if(feature.properties.capacity_mw > 1000 && feature.properties.fuel_source.Nuclear)
+                    return feature;
             }
         }).addTo(map);
+        
+        
+        
 
     </script>
 
