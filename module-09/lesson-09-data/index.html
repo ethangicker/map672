@@ -49,15 +49,15 @@
 
 <body>
     <header>
-        <h1>Map Title</h1>
-        <h2>Map Subtitle</h2>
+        <h1>Energy Generation</h1>
+        <h2>By fuel source and output</h2>
     </header>
 
     <div id='map'></div>
 
     <footer>
-        <p>Map authored by YOUR NAME</p>
-        <p>Additional information about the data and map goes here.</p>
+        <p>Map authored by Ethan Gicker for NMP 672</p>
+        <p>Data from U.S. Energy Information Administration 2015.</p>
     </footer>
 
     <script src="power-plants.js"></script>
@@ -77,9 +77,10 @@
       tiles.addTo(map);
         
          var layerInfo = {
+        coalLayer: {source: "Coal", color: '#92363a'},
         hydroLayer: {source:"Hydro", color:'#089ec7'}, 
         nuclearLayer: {source:"Nuclear", color:'#c5e323'},
-        coalLayer: {source: "Coal", color: '#92363a'}     
+             
     };
 
             
@@ -106,12 +107,12 @@
                     fillColor: layerInfo[layer].color,
                     radius: getRadius(feature.properties.fuel_source[layerInfo[layer].source])
                 } 
-            }
-
-             }).addTo(map);
-        
-        map.on('click', function(e) {
-        layerInfo.eachLayer(function(layer) {
+            },
+            
+        }).addTo(map);
+             
+            map.on('click', function(e) {
+        geoJsonLayers[layer].eachLayer(function(layer) {
         var distance = e.latlng.distanceTo(layer.getLatLng())/1000;
 
         if(distance > 500) {
@@ -119,18 +120,21 @@
                 stroke: false,
                 fill: false
             });  
+        
         } else {
+            
             layer.setStyle({
                 stroke: true,
                 fill: true  
             });  
-            layer.bindPopup("I am <b>"+distance.toLocaleString()+ 
-                            "km</b><br> from the click point.");
-        } 
-    });
-});
-        }
-        
+            layer.bindPopup(+distance.toLocaleString()+ 
+                            "km</b><br> from the click point.<br>");
+                } 
+            });
+        });
+
+    }
+    
       
     function getRadius(val) {
         var radius = Math.sqrt(val/Math.PI);
