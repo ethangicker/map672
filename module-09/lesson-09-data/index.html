@@ -110,9 +110,15 @@
             },
             
         }).addTo(map);
+    }
+             
              
             map.on('click', function(e) {
+            
+        for(var layer in layerInfo)   
+        
         geoJsonLayers[layer].eachLayer(function(layer) {
+        
         var distance = e.latlng.distanceTo(layer.getLatLng())/1000;
 
         if(distance > 500) {
@@ -128,12 +134,12 @@
                 fill: true  
             });  
             layer.bindPopup(+distance.toLocaleString()+ 
-                            "km</b><br> from the click point.<br>");
+                            "km</b><br> from the click point.<br>"+);
                 } 
             });
         });
 
-    }
+    
     
       
     function getRadius(val) {
@@ -148,6 +154,8 @@
     }
 
     L.control.layers(null, sourcesLabels, { collapsed:false }).addTo(map);
+        
+        
         
         
     </script>
