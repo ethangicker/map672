@@ -134,7 +134,7 @@
                 fill: true  
             });  
             layer.bindPopup(+distance.toLocaleString()+ 
-                            "km</b><br> from the click point.<br>"+);
+                            "km</b><br> from the click point.<br>"+ feature.properties.fuel_source);
                 } 
             });
         });
