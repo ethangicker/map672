@@ -49,15 +49,15 @@
 
 <body>
     <header>
-        <h1>Map Title</h1>
-        <h2>Map Subtitle</h2>
+        <h1>Energy Generation</h1>
+        <h2>By fuel source and output</h2>
     </header>
 
     <div id='map'></div>
 
     <footer>
-        <p>Map authored by YOUR NAME</p>
-        <p>Additional information about the data and map goes here.</p>
+        <p>Map authored by Ethan Gicker for NMP 672</p>
+        <p>Data from U.S. Energy Information Administration 2015.</p>
     </footer>
 
     <script src="power-plants.js"></script>
@@ -75,6 +75,91 @@
       });  
       
       tiles.addTo(map);
+        
+        var layerInfo = {
+            coalLayer: {source: "Coal", color: '#92363a'},
+            hydroLayer: {source:"Hydro", color:'#089ec7'}, 
+            nuclearLayer: {source:"Nuclear", color:'#c5e323'},
+        };
+
+        var commonStyles = {
+            weight: 1,
+            stroke: 1,
+            fillOpacity: .8
+        }
+
+        var geoJsonLayers = {};
+
+        for(var layer in layerInfo) {     
+            geoJsonLayers[layer] = L.geoJson(plants, {
+                pointToLayer: function(feature,latlng) {
+                    return L.circleMarker(latlng, commonStyles);
+                },
+                filter: function(feature) {
+                    if(feature.properties.fuel_source[layerInfo[layer].source]) {
+                        return feature;
+                    }
+                },
+                style: function(feature) {
+                    return {
+                        color: layerInfo[layer].color,
+                        fillColor: layerInfo[layer].color,
+                        radius: getRadius(feature.properties.fuel_source[layerInfo[layer].source])
+                    } 
+                },
+
+            }).addTo(map);
+        }
+             
+             
+        map.on('click', function(e) {
+            for(var layer_name in layerInfo) {
+                geoJsonLayers[layer_name].eachLayer(function(innerLayer) {
+
+                    var distance = e.latlng.distanceTo(innerLayer.getLatLng())/1000;
+                    var name = innerLayer.feature.properties.plant_name;
+
+                    if(distance > 500) {
+                        innerLayer.setStyle({
+                            stroke: false,
+                            fill: false
+                        });  
+
+                    } else {
+
+                        innerLayer.setStyle({
+                            stroke: true,
+                            fill: true  
+                        });  
+                        innerLayer.bindPopup(+distance.toLocaleString()+ 
+                                        "km</b><br> from the click point.<br>"+
+                                       "Fuel Source: " + layerInfo[layer_name].source + "<br>" +
+                                             "Name: " + name
+                                       );
+                    } 
+            
+                });
+            }
+        });
+
+    
+    
+      
+    function getRadius(val) {
+        var radius = Math.sqrt(val/Math.PI);
+        return radius * .8;   
+    }
+
+    var sourcesLabels = {
+        "<b style='color:#089ec7'>Hydro</b>": geoJsonLayers.hydroLayer,
+        "<b style='color:#c5e323'>Nuclear</b>": geoJsonLayers.nuclearLayer,
+        "<b style='color:#92363a'>Coal</b>": geoJsonLayers.coalLayer
+    }
+
+    L.control.layers(null, sourcesLabels, { collapsed:false }).addTo(map);
+        
+        
+        
                   
     </script>
     
